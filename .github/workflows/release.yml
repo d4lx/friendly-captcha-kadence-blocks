@@ -1,0 +1,24 @@
+name: Build Release Zip
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Create plugin zip
+        run: |
+          zip -r friendly-captcha-kadence-blocks.zip friendly-captcha-kadence-blocks
+
+      - name: Upload release asset
+        uses: softprops/action-gh-release@v1
+        with:
+          files: friendly-captcha-kadence-blocks.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
