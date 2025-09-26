@@ -5,6 +5,9 @@ on:
     types:
       - published
 
+permissions:
+  contents: write
+
 jobs:
   package:
     runs-on: ubuntu-latest
@@ -20,5 +23,3 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: friendly-captcha-kadence-blocks.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
